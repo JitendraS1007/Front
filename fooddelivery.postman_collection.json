@@ -1,0 +1,2233 @@
+{
+	"info": {
+		"_postman_id": "bc94a2ed-b08f-47e6-a3a9-b9fc52dd31fd",
+		"name": "fooddelivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38548190"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"username\": \"test1l\",\r\n\"password\": \"Test@123\",\r\n\"email\": \"se.jitendra7515po@gmail.com\",\r\n\"countryCode\": \"+91\",\r\n\"mobile\": \"1234567800\",\r\n\"accountType\": 1\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"pm.environment.set(\"token\", response.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"se.jitendra7515po@gmail.com\",\r\n  \"password\": \"Test@123\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot-password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\":\"jitendra.i.esingh@capgemini.com\"}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "passwordSave",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"newPassword\": \"Test@123\",\r\n  \"confirmPassword\": \"Test@123\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/save-password?token=ba7ff1e4e053768af840a0d967b1fb5a112e4ea74d43bee3505928df9e821599",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"save-password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "ba7ff1e4e053768af840a0d967b1fb5a112e4ea74d43bee3505928df9e821599"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userList",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"newPassword\": \"Test@123\",\r\n  \"confirmPassword\": \"Test@123\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/userlist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"userlist"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "common",
+			"item": [
+				{
+					"name": "change Lang",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/auth/change-lang/en",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"change-lang",
+								"en"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/auth/change-lang/en",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"change-lang",
+										"en"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Sep 2024 05:38:20 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-b02UfaPwmfrrIsHOZd8F6Hr4X4w\"",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "(see tab Cookies)",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\"message\":\"Language_change_successful\"}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Menu Item",
+			"item": [
+				{
+					"name": "Menu item list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWQzOGEyOTA4OGVmZTU4MmVmNzU3MyIsInJvbGUiOjEsImlhdCI6MTcyNzE1NjkwNSwiZXhwIjoxNzI3MTYwNTA1fQ.DeN9UOMx4oNogw6FX8w9QgYVl7wIs2vSF6AGuCbgVRk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/restro/get-restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"get-restaurants"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWQzOGEyOTA4OGVmZTU4MmVmNzU3MyIsInJvbGUiOjEsImlhdCI6MTcyNzE1NjkwNSwiZXhwIjoxNzI3MTYwNTA1fQ.DeN9UOMx4oNogw6FX8w9QgYVl7wIs2vSF6AGuCbgVRk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/restro/get-restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"get-restaurants"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Sep 2024 05:58:25 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-OxA7i+s05tlwYmVyfQLjSukTcxg\"",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\"success\":false,\"message\":\"An error occurred while processing your request.\",\"error\":\"Class constructor ObjectId cannot be invoked without 'new'\"}"
+						}
+					]
+				},
+				{
+					"name": "dish list  search dish",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWQzOGEyOTA4OGVmZTU4MmVmNzU3MyIsInJvbGUiOjEsImlhdCI6MTcyNzE1NjkwNSwiZXhwIjoxNzI3MTYwNTA1fQ.DeN9UOMx4oNogw6FX8w9QgYVl7wIs2vSF6AGuCbgVRk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/restro/get-restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"get-restaurants"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWQzOGEyOTA4OGVmZTU4MmVmNzU3MyIsInJvbGUiOjEsImlhdCI6MTcyNzE1NjkwNSwiZXhwIjoxNzI3MTYwNTA1fQ.DeN9UOMx4oNogw6FX8w9QgYVl7wIs2vSF6AGuCbgVRk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/restro/get-restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"get-restaurants"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Sep 2024 05:58:25 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-OxA7i+s05tlwYmVyfQLjSukTcxg\"",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\"success\":false,\"message\":\"An error occurred while processing your request.\",\"error\":\"Class constructor ObjectId cannot be invoked without 'new'\"}"
+						}
+					]
+				},
+				{
+					"name": "menu_items add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Big Burger",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "foodtype",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Delicious Burger with fresh ingredients",
+									"type": "text"
+								},
+								{
+									"key": "restaurant",
+									"value": "66f3fa9469b34ec67bcaded3",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/jsingh18/OneDrive - Capgemini/Documents/profile screen shot.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/menu_items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"menu_items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Big Burger",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "50",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "foodtype",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Delicious Burger with fresh ingredients",
+											"type": "text"
+										},
+										{
+											"key": "restaurant",
+											"value": "66f3fa9469b34ec67bcaded3",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/jsingh18/OneDrive - Capgemini/Documents/profile screen shot.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/restro/menu_items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"menu_items"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Sep 2024 11:58:13 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "344",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"158-9woihMiR2sT1+OJXdRZnbszjE7A\"",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\"success\":true,\"message\":\"dish_added_successfully\",\"data\":{\"name\":\"Pizza\",\"price\":12.99,\"quantity\":5,\"image\":null,\"foodtype\":1,\"description\":\"Delicious pizza with fresh ingredients.\",\"restaurant\":\"66f14dca6f5459a60c5296f1\",\"_id\":\"66f157d5399d92adf0ba8aba\",\"createdAt\":\"2024-09-23T11:58:13.615Z\",\"updatedAt\":\"2024-09-23T11:58:13.615Z\",\"__v\":0}}"
+						}
+					]
+				},
+				{
+					"name": "menu_items Edit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Pizza\",\r\n     \r\n   \"price\": 12.99,\r\n   \r\n   \"quantity\": 5,\r\n    \r\n    \"image\": \"uploads/images/pizza.jpg\",\r\n     \"foodtype\": 1,\r\n     \"description\": \"Delicious pizza with fresh ingredients.\",\r\n     \"restaurant\": \"66f14dca6f5459a60c5296f1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/add-dish",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"add-dish"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"name\": \"Pizza\",\r\n     \r\n   \"price\": 12.99,\r\n   \r\n   \"quantity\": 5,\r\n    \r\n    \"image\": \"uploads/images/pizza.jpg\",\r\n     \"foodtype\": 1,\r\n     \"description\": \"Delicious pizza with fresh ingredients.\",\r\n     \"restaurant\": \"66f14dca6f5459a60c5296f1\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/restro/add-dish",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"add-dish"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Sep 2024 11:58:13 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "344",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"158-9woihMiR2sT1+OJXdRZnbszjE7A\"",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\"success\":true,\"message\":\"dish_added_successfully\",\"data\":{\"name\":\"Pizza\",\"price\":12.99,\"quantity\":5,\"image\":null,\"foodtype\":1,\"description\":\"Delicious pizza with fresh ingredients.\",\"restaurant\":\"66f14dca6f5459a60c5296f1\",\"_id\":\"66f157d5399d92adf0ba8aba\",\"createdAt\":\"2024-09-23T11:58:13.615Z\",\"updatedAt\":\"2024-09-23T11:58:13.615Z\",\"__v\":0}}"
+						}
+					]
+				},
+				{
+					"name": "dish status update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"name\": \"Pizza\",\r\n     \r\n   \"price\": 12.99,\r\n   \r\n   \"quantity\": 5,\r\n    \r\n    \"image\": \"uploads/images/pizza.jpg\",\r\n     \"foodtype\": 1,\r\n     \"description\": \"Delicious pizza with fresh ingredients.\",\r\n     \"restaurant\": \"66f14dca6f5459a60c5296f1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/add-dish",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"add-dish"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"name\": \"Pizza\",\r\n     \r\n   \"price\": 12.99,\r\n   \r\n   \"quantity\": 5,\r\n    \r\n    \"image\": \"uploads/images/pizza.jpg\",\r\n     \"foodtype\": 1,\r\n     \"description\": \"Delicious pizza with fresh ingredients.\",\r\n     \"restaurant\": \"66f14dca6f5459a60c5296f1\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/restro/add-dish",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"add-dish"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Sep 2024 11:58:13 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "344",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"158-9woihMiR2sT1+OJXdRZnbszjE7A\"",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\"success\":true,\"message\":\"dish_added_successfully\",\"data\":{\"name\":\"Pizza\",\"price\":12.99,\"quantity\":5,\"image\":null,\"foodtype\":1,\"description\":\"Delicious pizza with fresh ingredients.\",\"restaurant\":\"66f14dca6f5459a60c5296f1\",\"_id\":\"66f157d5399d92adf0ba8aba\",\"createdAt\":\"2024-09-23T11:58:13.615Z\",\"updatedAt\":\"2024-09-23T11:58:13.615Z\",\"__v\":0}}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "resturant",
+			"item": [
+				{
+					"name": "restro list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWQzOGEyOTA4OGVmZTU4MmVmNzU3MyIsInJvbGUiOjEsImlhdCI6MTcyNzE1NjkwNSwiZXhwIjoxNzI3MTYwNTA1fQ.DeN9UOMx4oNogw6FX8w9QgYVl7wIs2vSF6AGuCbgVRk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/restro/get-restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"get-restaurants"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWQzOGEyOTA4OGVmZTU4MmVmNzU3MyIsInJvbGUiOjEsImlhdCI6MTcyNzE1NjkwNSwiZXhwIjoxNzI3MTYwNTA1fQ.DeN9UOMx4oNogw6FX8w9QgYVl7wIs2vSF6AGuCbgVRk",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/restro/get-restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"get-restaurants"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Sep 2024 05:58:25 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-OxA7i+s05tlwYmVyfQLjSukTcxg\"",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\"success\":false,\"message\":\"An error occurred while processing your request.\",\"error\":\"Class constructor ObjectId cannot be invoked without 'new'\"}"
+						}
+					]
+				},
+				{
+					"name": "add resto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjEwYTVkMzk2NjZlNjRhZGM3ZjY3MCIsInJvbGUiOjIsImlhdCI6MTcyNzE1Nzc0NiwiZXhwIjoxNzI3MTYxMzQ2fQ.onyBUI4VVnif6wiRxpwDaif3zhqYjX2XCi1ZRXKX5s0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Neel Tree\",\r\n   \r\n     \"location\": \" 13 Normal  St\",\r\n   \r\n      \"pincode\": \"1234098\",\r\n   \r\n      \"openingtime\": \"08:00 AM\",\r\n   \r\n      \"closingtime\": \"10:00 PM\",\r\n   \r\n      \"image\": \"http://example.com/image.jpg\",\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/add-resturant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"add-resturant"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjEwYTVkMzk2NjZlNjRhZGM3ZjY3MCIsInJvbGUiOjIsImlhdCI6MTcyNzE1Nzc0NiwiZXhwIjoxNzI3MTYxMzQ2fQ.onyBUI4VVnif6wiRxpwDaif3zhqYjX2XCi1ZRXKX5s0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Neel Tree\",\r\n   \r\n     \"location\": \" 13 Normal  St\",\r\n   \r\n      \"pincode\": \"1234098\",\r\n   \r\n      \"openingtime\": \"08:00 AM\",\r\n   \r\n      \"closingtime\": \"10:00 PM\",\r\n   \r\n      \"image\": \"http://example.com/image.jpg\",\r\n\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/restro/add-resturant",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"add-resturant"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Sep 2024 06:09:12 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1254",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'none'",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Expected double-quoted property name in JSON at position 237 (line 14 column 1)<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\body-parser\\lib\\types\\json.js:92:19)<br> &nbsp; &nbsp;at C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\body-parser\\lib\\read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:206:9)<br> &nbsp; &nbsp;at invokeCallback (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:238:16)<br> &nbsp; &nbsp;at done (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:227:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:287:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:515:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1409:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
+						}
+					]
+				},
+				{
+					"name": "Edit resto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjEwYTVkMzk2NjZlNjRhZGM3ZjY3MCIsInJvbGUiOjIsImlhdCI6MTcyNzE1Nzc0NiwiZXhwIjoxNzI3MTYxMzQ2fQ.onyBUI4VVnif6wiRxpwDaif3zhqYjX2XCi1ZRXKX5s0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Neel Tree\",\r\n   \r\n     \"location\": \" 13 Normal  St\",\r\n   \r\n      \"pincode\": \"1234098\",\r\n   \r\n      \"openingtime\": \"08:00 AM\",\r\n   \r\n      \"closingtime\": \"10:00 PM\",\r\n   \r\n      \"image\": \"http://example.com/image.jpg\",\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/add-resturant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"add-resturant"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjEwYTVkMzk2NjZlNjRhZGM3ZjY3MCIsInJvbGUiOjIsImlhdCI6MTcyNzE1Nzc0NiwiZXhwIjoxNzI3MTYxMzQ2fQ.onyBUI4VVnif6wiRxpwDaif3zhqYjX2XCi1ZRXKX5s0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Neel Tree\",\r\n   \r\n     \"location\": \" 13 Normal  St\",\r\n   \r\n      \"pincode\": \"1234098\",\r\n   \r\n      \"openingtime\": \"08:00 AM\",\r\n   \r\n      \"closingtime\": \"10:00 PM\",\r\n   \r\n      \"image\": \"http://example.com/image.jpg\",\r\n\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/restro/add-resturant",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"add-resturant"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Sep 2024 06:09:12 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1254",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'none'",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Expected double-quoted property name in JSON at position 237 (line 14 column 1)<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\body-parser\\lib\\types\\json.js:92:19)<br> &nbsp; &nbsp;at C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\body-parser\\lib\\read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:206:9)<br> &nbsp; &nbsp;at invokeCallback (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:238:16)<br> &nbsp; &nbsp;at done (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:227:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:287:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:515:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1409:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
+						}
+					]
+				},
+				{
+					"name": "restro status update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjEwYTVkMzk2NjZlNjRhZGM3ZjY3MCIsInJvbGUiOjIsImlhdCI6MTcyNzE1Nzc0NiwiZXhwIjoxNzI3MTYxMzQ2fQ.onyBUI4VVnif6wiRxpwDaif3zhqYjX2XCi1ZRXKX5s0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Neel Tree\",\r\n   \r\n     \"location\": \" 13 Normal  St\",\r\n   \r\n      \"pincode\": \"1234098\",\r\n   \r\n      \"openingtime\": \"08:00 AM\",\r\n   \r\n      \"closingtime\": \"10:00 PM\",\r\n   \r\n      \"image\": \"http://example.com/image.jpg\",\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/add-resturant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"add-resturant"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Response",
+							"originalRequest": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjEwYTVkMzk2NjZlNjRhZGM3ZjY3MCIsInJvbGUiOjIsImlhdCI6MTcyNzE1Nzc0NiwiZXhwIjoxNzI3MTYxMzQ2fQ.onyBUI4VVnif6wiRxpwDaif3zhqYjX2XCi1ZRXKX5s0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "User-Agent",
+										"value": "Mozilla/5.0",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Neel Tree\",\r\n   \r\n     \"location\": \" 13 Normal  St\",\r\n   \r\n      \"pincode\": \"1234098\",\r\n   \r\n      \"openingtime\": \"08:00 AM\",\r\n   \r\n      \"closingtime\": \"10:00 PM\",\r\n   \r\n      \"image\": \"http://example.com/image.jpg\",\r\n\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/restro/add-resturant",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"restro",
+										"add-resturant"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"type": "text"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Sep 2024 06:09:12 GMT",
+									"type": "text"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1254",
+									"type": "text"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8",
+									"type": "text"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"type": "text"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'none'",
+									"type": "text"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Expected double-quoted property name in JSON at position 237 (line 14 column 1)<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\body-parser\\lib\\types\\json.js:92:19)<br> &nbsp; &nbsp;at C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\body-parser\\lib\\read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:206:9)<br> &nbsp; &nbsp;at invokeCallback (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:238:16)<br> &nbsp; &nbsp;at done (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:227:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (C:\\Users\\jsingh18\\OneDrive - Capgemini\\Documents\\Food_Delivery\\node_modules\\raw-body\\index.js:287:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:515:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1409:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "cart",
+			"item": [
+				{
+					"name": "add item in cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"menuItemId\":\"66f6685b51e6c6c2dc5b7a22\", \r\n     \"quantity\":1, \r\n     \"price\":50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/addCart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"addCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cart list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/restro/cartList",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"cartList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete item cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/restro/cart/items/66f6685b51e6c6c2dc5b7a22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"cart",
+								"items",
+								"66f6685b51e6c6c2dc5b7a22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "save order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"restaurant_id\": \"66f3fb0e09be5d4d1f818ea6\",\r\n    \"total_price\": 100,\r\n    \"status\": \"Pending\",\r\n    \"payment_status\": \"Unpaid\",\r\n    \"delivery_address\": \"123 Main St, City, Country\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/order/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"order",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get single order",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/restro/order/66f6af8760c17d77a1c66516",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"order",
+								"66f6af8760c17d77a1c66516"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delivery",
+			"item": [
+				{
+					"name": "delivery  acceptance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"order_id\":\"66ffb4910476e38efc75c26b\", \r\n     \"driver_id\":\"66f7b928cf7eae38a751f79d\",\r\n     \"pickup_time\":\"2024-09-28T07:31:41.603Z\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/deliveries",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"deliveries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delivery status update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"delivery_status\":\"On the Way\",\r\n     \"delivery_time\":\"2024-09-28T07:31:41.603Z\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/deliveries/66f7b2fd2917c3097c698a2c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"deliveries",
+								"66f7b2fd2917c3097c698a2c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delivery status update Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"delivery_status\":\"On the Way\",\r\n     \"delivery_time\":\"2024-09-28T07:31:41.603Z\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/deliveries/66f7b2fd2917c3097c698a2c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"deliveries",
+								"66f7b2fd2917c3097c698a2c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "create payment",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "payment data fetch",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update payment",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "review",
+			"item": [
+				{
+					"name": "create review",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete review",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get review",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "delivery address",
+			"item": [
+				{
+					"name": "Address save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address_line1\": \"123 Main St\",\r\n  \"address_line2\": \"Apt 4B\",\r\n  \"city\": \"New York\",\r\n  \"state\": \"NY\",\r\n  \"postal_code\": \"10001\",\r\n  \"country\": \"USA\",\r\n  \"contact_number\": \"1234567890\",\r\n  \"delivery_instructions\": \"Leave at the front door\",\r\n  \"is_default\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/delivery-address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"delivery-address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address_line1\": \"1232 Main St\",\r\n  \"address_line2\": \"Apt 4B\",\r\n  \"city\": \"New York\",\r\n  \"state\": \"NY\",\r\n  \"postal_code\": \"10001\",\r\n  \"country\": \"USA\",\r\n  \"contact_number\": \"1234567890\",\r\n  \"delivery_instructions\": \"Leave at the front door\",\r\n  \"is_default\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/delivery-address/66fa97b27d866c120e11a182",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"delivery-address",
+								"66fa97b27d866c120e11a182"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address_line1\": \"1232 Main St\",\r\n  \"address_line2\": \"Apt 4B\",\r\n  \"city\": \"New York\",\r\n  \"state\": \"NY\",\r\n  \"postal_code\": \"10001\",\r\n  \"country\": \"USA\",\r\n  \"contact_number\": \"1234567890\",\r\n  \"delivery_instructions\": \"Leave at the front door\",\r\n  \"is_default\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/restro/delivery-address/66fa97b27d866c120e11a182",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"delivery-address",
+								"66fa97b27d866c120e11a182"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/restro/delivery-address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"delivery-address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single  Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/restro/delivery-address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"restro",
+								"delivery-address"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
